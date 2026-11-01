@@ -73,7 +73,7 @@ The package-lock.json file records the exact dependency versions used for instal
 1. Clone the GitHub repository:
 
    ```bash
-   git clone [https://github.com/chaithu-m10-eng/BDF-lab1.git](https://github.com/chaithu-m10-eng/BDF-lab1.git)
+   git clone [https://github.com/chaithu-m10-eng/chaithu-BDF-LABS.git](https://github.com/chaithu-m10-eng/chaithu-BDF-LABS.git)
    Navigate to the Lab 1 folder:
 
 Bash
