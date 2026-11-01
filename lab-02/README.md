@@ -85,7 +85,27 @@ For normal execution:
 npm start
 The local server runs on port 3000.
 
-## 7. API Endpoints
+## 7.Screenshots
+
+### 1. Database View / CLI Setup
+![Database View](screenshots/get-data.png)
+
+### 2. GET /books/ (Retrieve All Books)
+![Get All Books](screenshots/get-all-books.png)
+
+### 3. GET /books/:bookId/ (Retrieve Single Book)
+![Get Single Book](screenshots/get-single-book.png)
+
+### 4. POST /books/ (Add New Book)
+![Add New Book](screenshots/add-book.png)
+
+### 5. PUT /books/:bookId/ (Update Book)
+![Update Book](screenshots/update-book.png)
+
+### 6. DELETE /books/:bookId/ (Delete Book)
+![Delete Book](screenshots/delete-book.png)
+
+## 8. API Endpoints
 Local Base URL:
 
 http://localhost:3000
@@ -99,7 +119,7 @@ GET          /books/:bookId/  Retrieve a book by ID
 POST         /books/          Add a new book
 PUT          /books/:bookId/  Update an existing book
 DELETE       /books/:bookId/  Delete a book
-## 8. API Request Examples
+## 9. API Request Examples
 8.1 GET - Retrieve All Books
 GET /books/
 Retrieves all book records from the database.
@@ -136,7 +156,7 @@ Updates the details of an existing book.
 DELETE /books/1/
 Deletes a book using its ID.
 
-## 9. SQL Queries Used
+## 10. SQL Queries Used
 SELECT:
 
 SELECT * FROM book;
@@ -154,7 +174,7 @@ DELETE:
 DELETE FROM book WHERE id = ?;
 Parameterized queries are used to safely pass values into SQL statements.
 
-## 10. Testing
+## 11. Testing
 The API endpoints were tested using Postman.
 
 GET - Retrieved all book records.
@@ -165,14 +185,14 @@ DELETE - Deleted a book successfully.
 The database records were also verified using SQLite CLI.
 The database records were also verified using SQLite CLI.
 
-## 11. Deployment
+## 12. Deployment
 The Express.js application was deployed using Render.
 
 Live API:
 
 https://chaithu-bdf-lab2.onrender.com/books/
 
-## 12. Problems Faced and Solutions
+## 13. Problems Faced and Solutions
 SQLite installation: Installed SQLite tools and configured the environment.
 Database connection: Connected SQLite with Express using the sqlite and sqlite3 packages.
 GitHub push rejection: Resolved unrelated Git histories and successfully pushed the project.
