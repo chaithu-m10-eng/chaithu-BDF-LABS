@@ -139,19 +139,19 @@ The following screenshots demonstrate the endpoint responses.
 
 ### 1. Home Endpoint – GET /
 
-![Home endpoint screenshot](lab-01/screenshots/home.png)
+![Home endpoint screenshot](screenshots/home.png)
 
 ### 2. About Endpoint – GET /about
 
-![About endpoint screenshot](lab-01/screenshots/about.png)
+![About endpoint screenshot](screenshots/about.png)
 
 ### 3. Time Endpoint – GET /time
 
-![Time endpoint screenshot](lab-01/screenshots/time.png)
+![Time endpoint screenshot](screenshots/time.png)
 
 ### 4. Unknown Route – 404 Response
 
-![Unknown route screenshot](lab-01/screenshots/unknown.png)
+![Unknown route screenshot](screenshots/unknown.png)
 ## Testing
 The endpoints should be tested by opening their URLs in a web browser.
 
