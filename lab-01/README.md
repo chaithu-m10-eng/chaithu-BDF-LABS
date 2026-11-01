@@ -134,12 +134,24 @@ Public Deployment URL: https://chaithu-bdf-lab1.onrender.com/
 The deployed application can be opened in a web browser. The individual endpoints should also be tested using the public URL.
 
 ## Screenshots
+
 The following screenshots demonstrate the endpoint responses.
 
-1. Home Endpoint – GET /
-2. About Endpoint – GET /about
-3. Time Endpoint – GET /time
-4. Unknown Route – 404 Response
+### 1. Home Endpoint – GET /
+
+![Home endpoint screenshot](lab-01/screenshots/home.png)
+
+### 2. About Endpoint – GET /about
+
+![About endpoint screenshot](lab-01/screenshots/about.png)
+
+### 3. Time Endpoint – GET /time
+
+![Time endpoint screenshot](lab-01/screenshots/time.png)
+
+### 4. Unknown Route – 404 Response
+
+![Unknown route screenshot](lab-01/screenshots/unknown.png)
 ## Testing
 The endpoints should be tested by opening their URLs in a web browser.
 
