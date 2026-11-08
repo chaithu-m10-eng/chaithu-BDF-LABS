@@ -3,7 +3,7 @@
 ## Project Details
 
 - **Name:** Ganta Chaitanya Vardhan
-- **Registration Number:** 252U1R5065
+- **Registration Number:** 252U1R5047
 - **Section:** CSE (AI & DE)
 - **Course:** Backend Development Fundamentals
 - **Lab:** Lab 3 – REST API, Query Parameters, Validation and Debugging
@@ -19,7 +19,7 @@ This project implements RESTful API operations using Node.js, Express.js, and SQ
 
 It also supports searching, sorting, pagination, price filtering, input validation, and proper HTTP status codes.
 
-The database contains book records with details such as book ID, title, author, price, and number of pages.
+The database contains 10 book records with details such as book ID, title, author, price, and number of pages.
 
 ## Technologies Used
 
@@ -55,276 +55,380 @@ lab-03/
     ├── sorting-ascending.png
     ├── sorting-descending.png
     └── update.png
+```
 
-Installation and Setup
-1. Clone the repository
-Bash
+## Installation and Setup
 
+### 1. Clone the repository
 
-git clone [https://github.com/chaithu-m10-eng/chaithu-BDF.git](https://github.com/chaithu-m10-eng/chaithu-BDF.git)
-2. Open the project folder
-Bash
+```bash
+git clone [https://github.com/chaithu-m10-eng/chaithu-BDF-LABS.git](https://github.com/chaithu-m10-eng/chaithu-BDF-LABS.git)
+```
 
+### 2. Open the project folder
 
-cd chaithu-BDF/lab-03
-3. Install dependencies
-Bash
+```bash
+cd lab-03
+```
 
+### 3. Install dependencies
 
+```bash
 npm install
-4. Start the development server
-Bash
+```
 
+### 4. Start the development server
 
+```bash
 npm run dev
+```
+
 The server runs at:
 
-Plaintext
-
-
+```text
 http://localhost:3000
-API Endpoints
-HTTP Method	Endpoint	Description
-GET	/books	Retrieve all books
-GET	/books/:bookId	Retrieve a specific book
-POST	/books	Add a new book
-PUT	/books/:bookId	Update a book
-DELETE	/books/:bookId	Delete a book
+```
 
-Query Parameters
-1. Search Books
-Plaintext
+## API Endpoints
 
+| HTTP Method | Endpoint | Description |
+|---|---|---|
+| GET | `/books` | Retrieve all books |
+| GET | `/books/:bookId` | Retrieve a specific book |
+| POST | `/books` | Add a new book |
+| PUT | `/books/:bookId` | Update a book |
+| DELETE | `/books/:bookId` | Delete a book |
 
+## Query Parameters
+
+### 1. Search Books
+
+```text
 GET /books?search_q=The
+```
+
 Searches for books using a partial title match.
 
-2. Sorting
-Ascending order:
+Expected matching books include:
+- The Alchemist
+- Think Like a Monk
+- The Power of Now
+- The 5 AM Club
 
-Plaintext
+### 2. Sorting
 
+**Ascending order:**
 
+```text
 GET /books?order_by=price&order=ASC
+```
+
 Sorts books by price from lowest to highest.
 
-Descending order:
+**Descending order:**
 
-Plaintext
-
-
+```text
 GET /books?order_by=price&order=DESC
+```
+
 Sorts books by price from highest to lowest.
 
-3. Pagination
-First five books:
+### 3. Pagination
 
-Plaintext
+**First five books:**
 
-
+```text
 GET /books?limit=5&offset=0
+```
+
 Returns five records starting from the first record.
 
-Next five books:
+**Next five books:**
 
-Plaintext
-
-
+```text
 GET /books?limit=5&offset=5
+```
+
 Returns the next five records.
 
-4. Price Filtering
-Plaintext
+### 4. Price Filtering
 
+```text
+GET /books?min_price=200&max_price=350
+```
 
-GET /books?min_price=200&max_price=500
-Retrieves books within the specified price range.
+Retrieves books within the price range of ₹200 to ₹350.
 
-5. Combined Query
-Plaintext
+Expected books:
+- The Alchemist – ₹250
+- Rich Dad Poor Dad – ₹300
+- Wings of Fire – ₹200
+- Ikigai – ₹350
+- Zero to One – ₹320
 
+### 5. Combined Query
 
+```text
 GET /books?search_q=The&min_price=200&max_price=500&order_by=price&order=ASC&limit=3&offset=0
+```
+
 Combines searching, price filtering, sorting, and pagination.
 
-Request Body for POST and PUT
-Select Body → raw → JSON in Postman.
+Expected matching books are sorted by price in ascending order, with a maximum of three records returned.
 
-POST – Add a New Book
-JSON
+## Database Records
 
+The database contains the following 10 books:
 
+| ID | Title | Author | Price (₹) | Pages |
+|---:|---|---|---:|---:|
+| 1 | The Alchemist | Paulo Coelho | 250 | 208 |
+| 2 | Atomic Habits | James Clear | 450 | 320 |
+| 3 | Rich Dad Poor Dad | Robert Kiyosaki | 300 | 336 |
+| 4 | Wings of Fire | A.P.J. Abdul Kalam | 200 | 180 |
+| 5 | Ikigai | Hector Garcia | 350 | 194 |
+| 6 | Think Like a Monk | Jay Shetty | 400 | 288 |
+| 7 | Deep Work | Cal Newport | 500 | 304 |
+| 8 | The Power of Now | Eckhart Tolle | 280 | 236 |
+| 9 | Zero to One | Peter Thiel | 320 | 210 |
+| 10 | The 5 AM Club | Robin Sharma | 380 | 336 |
+
+## Request Body for POST and PUT
+
+Select **Body → raw → JSON** in Postman.
+
+### POST – Add a New Book
+
+```json
 {
-  "title": "Dune",
-  "author": "Frank Herbert",
-  "price": 450,
-  "pages": 412
+  "title": "C++ Programming",
+  "author": "Bjarne Stroustrup",
+  "price": 600,
+  "pages": 450
 }
-Expected status code: 201 Created
+```
 
-PUT – Update an Existing Book
-JSON
+Expected status code: **201 Created**
 
+### PUT – Update an Existing Book
 
+```json
 {
   "title": "The Great Gatsby (Special Edition)",
   "author": "F. Scott Fitzgerald",
   "price": 599,
   "pages": 192
 }
+```
+
 Use:
 
-Plaintext
-
-
+```text
 PUT /books/1
-Expected status code: 200 OK
+```
 
-HTTP Status Codes
-Status Code	Description
-200	Request successful
-201	Book created successfully
-400	Invalid input or query parameters
-404	Book or route not found
-500	Internal server error
+Expected status code: **200 OK**
 
-Input Validation
+## HTTP Status Codes
+
+| Status Code | Description |
+|---|---|
+| 200 | Request successful |
+| 201 | Book created successfully |
+| 400 | Invalid input or query parameters |
+| 404 | Book or route not found |
+| 500 | Internal server error |
+
+## Input Validation
+
 The application validates:
 
-Book title must not be empty and must be a string.
+- Book title must not be empty.
+- Author name must not be empty.
+- Price must be a valid non-negative number.
+- Pages must be a positive integer.
+- Book ID must be a valid positive integer.
+- Sorting order must be ASC or DESC.
+- Sorting column must be valid.
+- Pagination values must be valid.
+- Minimum price must not exceed maximum price.
 
-Author name must not be empty and must be a string.
+## Postman Testing
 
-Price must be a valid non-negative number.
-
-Book ID must be a valid positive integer.
-
-Sorting order must be ASC or DESC.
-
-Sorting column must be valid.
-
-Pagination values must be valid integers.
-
-Postman Testing
 All API endpoints are tested using Postman.
 
 The tests include:
 
-Retrieve all books using GET.
+1. Retrieve all 10 books using GET.
+2. Retrieve a specific book using its ID.
+3. Search books using the title.
+4. Sort books by price in ascending order.
+5. Sort books by price in descending order.
+6. Test pagination using limit and offset.
+7. Filter books using minimum and maximum prices.
+8. Combine multiple query parameters.
+9. Add a new book using POST.
+10. Test invalid input validation.
+11. Update a book using PUT.
+12. Delete a book using DELETE.
+13. Test invalid IDs and missing records.
 
-Retrieve a specific book using its ID.
+### Negative Testing Queries
 
-Sort books by price in ascending order.
+**Invalid book ID:**
 
-Sort books by price in descending order.
+```text
+GET /books/abc
+```
 
-Filter books using minimum and maximum prices.
+Expected: **400 Bad Request**.
 
-Test invalid input validation using POST.
+**Book not found:**
 
-Add a new book using POST.
+```text
+GET /books/9999
+```
 
-Update a book using PUT.
+Expected: **404 Not Found**.
 
-Delete a book using DELETE.
+**Invalid sorting column:**
 
-Test invalid IDs and missing records using GET.
+```text
+GET /books?order_by=wrong
+```
 
-Negative Testing Queries
-Book not found:
+Expected: **400 Bad Request**.
 
-Plaintext
+**Invalid sorting order:**
 
+```text
+GET /books?order=INVALID
+```
 
-GET /books/999
-Expected: 404 Not Found.
+Expected: **400 Bad Request**.
 
-Invalid POST input:
+**Invalid pagination:**
 
-JSON
+```text
+GET /books?limit=-5
+```
 
+Expected: **400 Bad Request**.
 
-{
-  "title": "Test Book",
-  "author": "Test Author",
-  "price": "invalid"
-}
-Expected: 400 Bad Request.
+**Invalid price range:**
 
-Screenshots
-1. GET All Books
-2. GET Book by ID
-3. Sorting Ascending
-4. Sorting Descending
-5. Price Filtering
-6. POST Validation Error
-7. POST Successful Request
-8. PUT Update Request
-9. DELETE Request
-10. GET Book 404 Not Found
-Debugging & Troubleshooting
+```text
+GET /books?min_price=500&max_price=200
+```
+
+Expected: **400 Bad Request**.
+
+## Screenshots
+
+### 1. GET All Books
+
+![GET All Books](screenshots/get-all-books.png)
+
+### 2. GET Book by ID
+
+![GET Book by ID](screenshots/get-book-by-id.png)
+
+### 3. Sorting Ascending
+
+![Sorting Ascending](screenshots/sorting-ascending.png)
+
+### 4. Sorting Descending
+
+![Sorting Descending](screenshots/sorting-descending.png)
+
+### 5. Price Filtering
+
+![Price Filtering](screenshots/price-filter.png)
+
+### 6. POST Validation Error
+
+![POST Validation Error](screenshots/post-validation-error.png)
+
+### 7. POST Successful Request
+
+![POST Successful Request](screenshots/post-success.png)
+
+### 8. PUT Update Request
+
+![PUT Update Request](screenshots/update.png)
+
+### 9. DELETE Request
+
+![DELETE Request](screenshots/delete.png)
+
+### 10. GET Book 404 Not Found
+
+![404 Not Found](screenshots/not-found-error.png)
+
+## Debugging & Troubleshooting
+
 During the development and deployment of the REST API, several common errors were identified and resolved.
 
-1. Port Already in Use (EADDRINUSE)
-Error:
+### 1. Port Already in Use (EADDRINUSE)
 
-Plaintext
-
-
+**Error:**
+```text
 Error: listen EADDRINUSE: address already in use :::3000
-Cause:
+```
+
+**Cause:**
 Another application or previously running Node.js server is already using port 3000.
 
-Solution:
+**Solution:**
 
-Stop the process using port 3000 in PowerShell:
+Stop the previous server using `Ctrl + C` in its terminal.
 
-PowerShell
+Alternatively, find the process using port 3000 in Windows PowerShell:
 
-
+```powershell
 Stop-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess -Force
-Alternatively, use dynamic port binding in server.js:
+```
 
-JavaScript
+Restart the application:
 
+```bash
+npm run dev
+```
 
-const PORT = process.env.PORT || 3000;
-2. Wrong Import Path / Syntax
-Error:
+### 2. Wrong Import Path
 
-Plaintext
-
-
+**Error:**
+```text
 Error: Cannot find module '../database'
-Cause:
-The required file path, filename, or package destructuring syntax is incorrect.
+```
 
-Solution:
+**Cause:**
+The required file path or filename is incorrect.
 
-Correct the relative import path and destructuring syntax:
+**Solution:**
 
-JavaScript
+Verify that the required file exists and correct the relative import path:
 
-
+```javascript
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
-3. SQLite Table Not Found
-Error:
+```
 
-Plaintext
+### 3. SQLite Table Not Found
 
-
+**Error:**
+```text
 SQLITE_ERROR: no such table: books
-Cause:
-The requested table does not exist in the connected SQLite database, or the query targets books instead of book.
+```
 
-Solution:
+**Cause:**
+The requested table does not exist in the connected SQLite database, or the application is connecting to a different database file.
 
-Verify table initialization and standardize table name in SQL queries:
+**Solution:**
 
-SQL
+Verify database initialization and standardize table name in SQL queries:
 
-
+```sql
 CREATE TABLE IF NOT EXISTS book (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT,
@@ -332,126 +436,145 @@ CREATE TABLE IF NOT EXISTS book (
     price INTEGER,
     pages INTEGER
 );
-4. Missing Await in Asynchronous Operations
-Problem:
+```
 
-Database operations return Promises. If await is missing, the response may return an unresolved Promise.
+### 4. Missing Await in Asynchronous Operations
 
-Incorrect Code:
+**Problem:**
 
-JavaScript
+Database operations return Promises. If `await` is missing, the response may contain a Promise instead of the actual database result.
 
+**Incorrect Code:**
 
+```javascript
 const books = db.all("SELECT * FROM book");
 res.json(books);
-Correct Code:
+```
 
-JavaScript
+**Correct Code:**
 
-
+```javascript
 const books = await db.all("SELECT * FROM book");
 res.json(books);
-Solution:
+```
 
-Use async/await for database operations within try/catch blocks.
+**Solution:**
 
-5. Missing Module (MODULE_NOT_FOUND)
-Error:
+Use `async/await` when handling asynchronous database operations and handle errors using `try/catch`.
 
-Plaintext
+### 5. Missing Module (MODULE_NOT_FOUND)
 
-
+**Error:**
+```text
 Error: Cannot find module 'sqlite'
-Cause:
-The required npm package is not installed or missing from node_modules.
+```
 
-Solution:
+**Cause:**
+The required npm package is not installed or cannot be found in `node_modules`.
 
-Install missing dependencies:
+**Solution:**
 
-Bash
+Install the missing dependency:
 
-
+```bash
 npm install sqlite sqlite3
-Verify installed packages:
+```
 
-Bash
+Verify the installed packages:
 
-
+```bash
 npm ls sqlite sqlite3
-6. Missing Dev Script in package.json
-Error:
+```
 
-Plaintext
+### 6. Missing Dev Script in package.json
 
-
+**Error:**
+```text
 npm error Missing script: "dev"
-Cause:
-The dev script is missing from package.json.
+```
 
-Solution:
+**Cause:**
+The `dev` script is missing from `package.json`, or the terminal is running in the wrong project directory.
 
-Add standard scripts to package.json:
+**Solution:**
 
-JSON
+Add the following scripts to `package.json`:
 
-
+```json
 "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
 }
-7. Render Deployment Error (SQLite GLIBC Compatibility)
-Error:
+```
 
-Plaintext
+Install dependencies and start the development server:
 
+```bash
+npm install
+npm run dev
+```
 
+### 7. Render Deployment Error (SQLite GLIBC Compatibility)
+
+**Error:**
+```text
 GLIBC_2.38 not found
-Cause:
-Native SQLite binary mismatch between local environment and Linux runtime on Render.
+```
 
-Solution:
+**Cause:**
+The SQLite3 native binary was incompatible with the Linux runtime environment used by Render.
 
-Rebuild native modules in build phase:
+**Solution:**
 
-Bash
+Rebuild the SQLite3 native module in the Render build environment:
 
-
+```bash
 npm ci && npm rebuild sqlite3 --build-from-source
-8. SQLite3 Native Binding Not Found
-Error:
+```
 
-Plaintext
+### 8. SQLite3 Native Binding Not Found
 
-
+**Error:**
+```text
 Error: Could not locate the bindings file
-Cause:
-Native bindings incomplete during package installation.
+```
 
-Solution:
+**Cause:**
+The SQLite3 native module was not successfully built or installed for the deployment environment.
 
-Rebuild native modules:
+**Solution:**
 
-Bash
+Rebuild the native module:
 
-
+```bash
 npm rebuild sqlite3 --build-from-source
-Debugging Summary
-Error	Solution
-EADDRINUSE	Stop process using port or use process.env.PORT
-Wrong import path	Correct require path and package destructuring
-No such table	Standardize SQL query table name to book
-Missing await	Wrap async calls with await and try/catch
-MODULE_NOT_FOUND	Install missing dependencies using npm install
-Missing dev script	Configure start and dev scripts in package.json
-GLIBC compatibility	Rebuild sqlite3 for Render runtime
-Native binding not found	Execute npm rebuild sqlite3 --build-from-source
+```
 
-Result: Common backend issues were systematically identified, debugged, and resolved through proper package setup, dynamic port configuration, SQL schema alignment, and deployment configuration.
+Check the Render build logs to verify that the compilation completes successfully.
 
-Conclusion
-This lab provided hands-on experience in building a production-grade REST API using Node.js, Express.js, and SQLite. I implemented CRUD operations, query parameter filtering (search, sort, price range, pagination), input validation, status code handling, and debugging techniques.
+---
 
-All endpoints were validated using Postman and deployed live on Render.
+### Debugging Summary
 
-End of Lab 3
+| Error | Solution |
+|---|---|
+| EADDRINUSE | Stop the process using the port |
+| Wrong import path | Correct the require path |
+| No such table | Verify database and table creation |
+| Missing await | Use async/await |
+| MODULE_NOT_FOUND | Install the required package |
+| Missing dev script | Add scripts to package.json |
+| GLIBC compatibility | Rebuild SQLite3 for Render |
+| Native binding not found | Rebuild SQLite3 native module |
+
+**Result:** Common backend errors were identified, debugged, and resolved through proper dependency management, database configuration, asynchronous programming, and deployment troubleshooting.
+
+## Conclusion
+
+This lab helped me understand REST API development using Node.js, Express.js, and SQLite. I implemented CRUD operations and learned how to use query parameters for searching, sorting, pagination, and price filtering.
+
+I also understood input validation, HTTP status codes, database integration, and debugging techniques. Postman helped me test the API endpoints and verify their responses. Finally, I deployed the REST API using Render.
+
+---
+
+**End of Lab 3**
